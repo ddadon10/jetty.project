@@ -98,7 +98,7 @@ def mavenBuild(jdk, cmdline, mvnName, consoleParsers) {
                "MAVEN_OPTS=-Xms2g -Xmx4g -Djava.awt.headless=true"]) {
         configFileProvider(
                 [configFile(fileId: 'oss-settings.xml', variable: 'GLOBAL_MVN_SETTINGS')]) {
-          sh "mvn -Dtest=HTTP2Test#testMaxConcurrentStreams,MaxConcurrentStreamsTest#testManyConcurrentRequestsWithSmallConcurrentStreams -s $GLOBAL_MVN_SETTINGS -DsettingsPath=$GLOBAL_MVN_SETTINGS -Pci -V -B -e -Djetty.testtracker.log=true $cmdline javadoc:jar -Dunix.socket.tmp=" +
+          sh "mvn -fae -Dtest=HTTP2Test#testMaxConcurrentStreams,MaxConcurrentStreamsTest#testManyConcurrentRequestsWithSmallConcurrentStreams -s $GLOBAL_MVN_SETTINGS -DsettingsPath=$GLOBAL_MVN_SETTINGS -Pci -V -B -e -Djetty.testtracker.log=true $cmdline javadoc:jar -Dunix.socket.tmp=" +
                      env.JENKINS_HOME
         }
       }
